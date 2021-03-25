@@ -1,0 +1,5 @@
+type,department,role,company,start_year,end_year,location
+intern,Analytics & Portfolio Management,Risk Management Intern,PNC Financial Services,2015,2015,"Pittsburgh, PA"
+intern,Baseball Operations,Data and Analytics Intern,Pittsburgh Pirates,2014,2014,"Pittsburgh, PA"
+intern,Equity Analysis,Intern,Schenley Park Capital Management,2013,2013,"Pittsburgh, PA"
+full,Analytics & Portfolio Management,Quantitative Analytics Associate,PNC Financial Services,2016,2017,"Pittsburgh, PA"

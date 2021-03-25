@@ -1,0 +1,5 @@
+software_id,title,authors,pub_year,url,website
+r_nflscrapr_17,nflscrapR: Compiling the NFL Play-by-Play API for easy use in R,"M. Horowitz, R. Yurko, S. Ventura",2017,https://github.com/maksimhorowitz/nflscrapR,GitHub
+r_nflwar_18,nflWAR: An R package to compute WAR for offensive players using nflscrapR,R. Yurko,2018,https://github.com/ryurko/nflWAR,GitHub
+r_fcscrapr_18,fcscrapR: R package to scrape soccer commentary and statistics from ESPN,R. Yurko,2018,https://github.com/ryurko/fcscrapR,GitHub
+r_adaptMT_19,adaptMT: Modifications including wrapper functions for XGBoost implementation with EM algorithm cross-validation tuning,R. Yurko,2019,https://github.com/ryurko/adaptMT,GitHub

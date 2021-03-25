@@ -1,0 +1,16 @@
+teaching_id,title,year,location,semester,notes,role
+cmu_stats_315,Statistical Graphics and Visualization,2018,Carnegie Mellon University,Summer,NA,course_ta
+cmu_stats_462,Data Mining,2018,Carnegie Mellon University,Spring,NA,course_ta
+cmu_stats_350,Statistical Computing,2017,Carnegie Mellon University,Fall,NA,course_ta
+cmu_stats_225,Introduction to Probability Theory,2015,Carnegie Mellon University,Fall,NA,course_grader
+cmu_stats_226,Introduction to Statistical Inference,2015,Carnegie Mellon University,Spring,NA,course_grader
+cmu_stats_201,Statistical Reasoning and Practice,2013,Carnegie Mellon University,Fall,NA,course_ta
+cmu_stats_201,Statistical Reasoning and Practice,2014,Carnegie Mellon University,Spring,NA,course_ta
+cmu_stats_201,Statistical Reasoning and Practice,2014,Carnegie Mellon University,Fall,NA,course_ta
+cmu_stuco_sabermetrics,Introduction to Sabermetrics and Exploring Baseball Data with R,2015,Carnegie Mellon University,Spring,Created course materials in student-taught course program,course_instructor
+cmu_stuco_sabermetrics,Introduction to Sabermetrics and Exploring Baseball Data with R,2015,Carnegie Mellon University,Fall,Created course materials in student-taught course program,course_instructor
+cmu_baseball_workshop_18,Carnegie Mellon Baseball Analytics Workshop,2018,Carnegie Mellon University,Spring,Created workshop materials and co-instructor of live coding demo,workshop_instructor
+cmu_football_workshop,Carnegie Mellon Football Analytics Workshop,2018,Carnegie Mellon University,Fall,Created workshop materials and instructor of live coding demo,workshop_instructor
+cmu_football_workshop,Carnegie Mellon Football Analytics Workshop,2019,Carnegie Mellon University,Fall,Created workshop materials and instructor of live coding demo,workshop_instructor
+cmusac_camp,Summer Undergraduate Research Experience in Statistics,2019,Carnegie Mellon University,Summer,"Created datasets and program materials, advised student projects",course_ta
+wharton_moneyball,Wharton Moneyball Academy and Training Camp,2019,Wharton School of the University of Pennsylvania,Summer,Assisted in development of course materials and course instructor for week-long introductory statistics course for high-school students,workshop_instructor

@@ -1,0 +1,558 @@
+---
+name: Ronald J. Yurko, Jr.
+position: "Curriculum Vitae"
+address: "Department of Statistics & Data Science, Carnegie Mellon University"
+email: "ryurko@andrew.cmu.edu"
+www: stat.cmu.edu/\textasciitilde ryurko/
+twitter: Stat_Ron
+github: ryurko
+headcolor: 00008b
+date: "`r format(Sys.time(), '%B %Y')`"
+output: vitae::moderncv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(tidyverse)
+library(here)
+```
+
+```{r init_education, include = FALSE}
+education_raw <- read_csv(here("data", "education.csv"))
+education <- education_raw %>% 
+  mutate(years = ifelse(!is.na(end_year),
+                       paste0(start_year, "-", end_year),
+                       paste0(start_year, "-", "Present")),
+         degree = paste0(degree, " in ", program))
+```
+
+
+```{r init_publications, include = FALSE}
+papers_raw <- read_csv(here("data", "publications.csv")) %>%
+  bind_rows(read_csv(here("data", "preprints.csv")))
+papers <- papers_raw %>% 
+  # Specify the release text based on if the status == "Published"
+  mutate(release = ifelse(status == "Published",
+                          pub_year,
+                          status),
+         # If the status is forthcoming then make the release combined:
+         release = ifelse(status == "Forthcoming", 
+                          paste0(status, " (", pub_year, ")"), release),
+         # Now relevel the status so that in goes from in progress, under review
+         # to published:
+         status = fct_relevel(status, "In progress", "Under review", "Published"),
+         # Create the line providing the url for the paper:
+         url_location = ifelse(!is.na(url),
+                               paste0(website, ": ", url),
+                               NA),
+         # Create a status_order variable that will be used just to figure out
+         # which is the first paper in a group:
+         status_order = ifelse(!is.na(pub_year), paste(status, pub_year, "-"),
+                               status)) %>%
+  # Now arrange by the status then year:
+  arrange(status, desc(status_order)) %>%
+  # Now group by the status_order to generate an ordering so the lefthand labels are
+  # not repeated:
+  group_by(status_order) %>%
+  mutate(status_order_i = 1:n(),
+         display_label = ifelse(status_order_i == 1, release, "")) %>%
+  ungroup()
+  
+```
+
+```{r init_misc-articles, include = FALSE}
+misc_articles_raw <- read_csv(here("data", "misc_articles.csv")) 
+misc_articles <- misc_articles_raw %>% 
+  # Specify the release text based on if the status == "Published"
+  mutate(release = ifelse(status == "Published",
+                          pub_year,
+                          status),
+         # If the status is forthcoming then make the release combined:
+         release = ifelse(status == "Forthcoming", 
+                          paste0(status, " (", pub_year, ")"), release),
+         # Now relevel the status so that in goes from in progress, under review
+         # to published:
+         status = factor(status, 
+                         levels = c("In progress", "Under review", "Published")),
+         # Create the line providing the url for the paper:
+         # url_location = ifelse(!is.na(url),
+         #                       paste0(website, ": ", url),
+         #                       NA),
+         # Create a status_order variable that will be used just to figure out
+         # which is the first paper in a group:
+         status_order = ifelse(!is.na(pub_year), paste(status, pub_year, "-"),
+                               status)) %>%
+  # Now arrange by the status then year:
+  arrange(status, desc(status_order)) %>%
+  # Now group by the status_order to generate an ordering so the lefthand labels are
+  # not repeated:
+  group_by(status_order) %>%
+  mutate(status_order_i = 1:n(),
+         display_label = ifelse(status_order_i == 1, release, "")) %>%
+  ungroup()
+```
+
+```{r init_presentations, include = FALSE}
+presentations_raw <- read_csv(here("data", "presentations.csv")) 
+presentations <- presentations_raw %>% 
+  # Now arrange by the type then year:
+  arrange(presentation_type, desc(year)) %>%
+  # Now group by the presentation_type to generate an ordering so the lefthand labels are
+  # not repeated:
+  group_by(presentation_type, year) %>%
+  mutate(type_order_i = 1:n(),
+         display_label = ifelse(type_order_i == 1, as.character(year), "")) %>%
+  ungroup()
+
+```
+
+
+```{r init_software, include = FALSE}
+software <- read_csv(here("data", "software.csv")) %>%
+    # Specify the release text based on if the status == "Published"
+  mutate(# Create the line providing the url for the paper:
+         url_location = ifelse(!is.na(url),
+                               paste0(website, ": ", url),
+                               NA)) %>%
+  # Now arrange by the status then year:
+  arrange(pub_year) %>%
+  # Now group by the status_order to generate an ordering so the lefthand labels are
+  # not repeated:
+  group_by(pub_year) %>%
+  mutate(pub_year_i = 1:n(),
+         display_label = ifelse(pub_year_i == 1, as.character(pub_year), "")) %>%
+  ungroup()
+  
+```
+
+
+```{r init_teaching, include = FALSE}
+teaching_raw <- read_csv(here("data", "teaching.csv")) 
+teaching <- teaching_raw %>% 
+  # First make the semester a factor with specified order:
+  mutate(semester = factor(semester, 
+                           levels = c("Spring", "Summer", "Fall"))) %>%
+  arrange(desc(year), desc(semester)) %>%
+  mutate(class_order = 1:n()) %>%
+  # Need to summarize each class label in terms of the semesters and years:
+  group_by(teaching_id, semester) %>%
+  mutate(semester_years = paste(sort(unique(year)), collapse = ", "),
+         semester_label = paste(semester, semester_years, sep = ": ")) %>%
+  ungroup() %>%
+  group_by(teaching_id) %>%
+  summarize(title = first(title),
+            location = first(location),
+            notes = first(notes),
+            role = first(role),
+            semester_summary = paste(unique(semester_label), collapse = ", "),
+            display_label = ifelse(length(unique(year)) > 1,
+                                          paste0(min(year), " - ", max(year)),
+                                   as.character(unique(year))),
+            class_order = first(class_order)) %>%
+  arrange(class_order) 
+
+```
+
+```{r init_research_experience, include = FALSE}
+research_experience <- read_csv(here("data", "research_experience.csv")) %>%
+  mutate(years = case_when(
+                   is.na(end_year) ~ paste0(start_year, "-Present"),
+                   start_year == end_year ~ as.character(start_year),
+                   TRUE ~ paste0(start_year, "-", end_year)),
+         advised_by = paste0("Advised by: ", advisors))
+```
+
+```{r init_industry, include = FALSE}
+industry_experience <- read_csv(here("data", "industry.csv")) %>%
+  mutate(years = case_when(
+                   is.na(end_year) ~ paste0(start_year, "-Present"),
+                   start_year == end_year ~ as.character(start_year),
+                   TRUE ~ paste0(start_year, "-", end_year)),
+         display_location = paste(department, company, location, sep = ", "))
+```
+
+```{r init_fellowships_grants, include = FALSE}
+fellowships_grants <- read_csv(here("data", "fellowship_funding.csv")) %>%
+  arrange(desc(start_year)) %>%
+  mutate(years = case_when(
+                   is.na(end_year) ~ paste0(start_year, "-Present"),
+                   start_year == end_year ~ as.character(start_year),
+                   TRUE ~ paste0(start_year, "-", end_year)))
+
+```
+
+```{r init_honors_awards, include = FALSE}
+honors_awards <- read_csv(here("data", "honors_awards.csv")) %>%
+  arrange(desc(year))
+
+```
+
+```{r init_professional_service, include = FALSE}
+professional_service <- read_csv(here("data", "professional_service.csv")) %>%
+    mutate(years = case_when(
+                   is.na(end_year) ~ paste0(start_year, "-Present"),
+                   start_year == end_year ~ as.character(start_year),
+                   TRUE ~ paste0(start_year, "-", end_year))) %>%
+  arrange(desc(start_year))
+```
+
+```{r init_workshops, include = FALSE}
+workshops_attended <- read_csv(here("data", "workshops_attended.csv")) %>%
+  arrange(desc(year))
+
+```
+
+```{r init_societies, include = FALSE}
+professional_societies <- read_csv(here("data", "professional_societies.csv")) %>%
+  arrange(society)
+```
+
+```{r init_computing_skills, include = FALSE}
+computing_skills <- read_csv(here("data", "computing_skills.csv")) %>% 
+  mutate(level = factor(level,
+                        levels = c("Expert", "Proficient", "Intermediate",
+                                   "Beginner"))) %>%
+  group_by(level) %>%
+  summarize(languages = paste(languages, collapse = ", ")) %>%
+  arrange(level)
+```
+
+```{r init_activities, include = FALSE}
+activities <- read_csv(here("data", "activities.csv")) %>%
+  mutate(years = case_when(
+                   is.na(end_year) ~ paste0(start_year, "-Present"),
+                   start_year == end_year ~ as.character(start_year),
+                   TRUE ~ paste0(start_year, "-", end_year))) %>%
+  arrange(desc(start_year))
+```
+
+
+# Education
+
+```{r education}
+education %>%
+  detailed_entries(
+    what = degree,
+    when = years,
+    with = school,
+    why = notes
+  )
+```
+
+# Publications and Preprints
+
+```{r publications}
+#bibliography_entries(here("data", "publications.bib"))
+papers %>%
+  detailed_entries(what = title,
+                   with = authors,
+                   where = journal,
+                   when = display_label,
+                   why = url_location)
+```
+
+# Presentations
+
+## Invited Seminar Presentations
+
+```{r}
+presentations %>%
+  filter(presentation_type == "invited_seminar") %>%
+  detailed_entries(what = title,
+                   with = author_notes,
+                   where = conference,
+                   when = display_label,
+                   why = more_info)
+```
+
+
+## Contributed Conference Oral Presentations
+
+```{r}
+presentations %>%
+  filter(presentation_type == "contributed") %>%
+  detailed_entries(what = title,
+                   with = author_notes,
+                   where = conference,
+                   when = display_label,
+                   why = more_info)
+```
+
+
+## Conference Poster Presentations
+
+```{r}
+presentations %>%
+  filter(presentation_type == "poster") %>%
+  detailed_entries(what = title,
+                   with = author_notes,
+                   where = conference,
+                   when = display_label,
+                   why = more_info)
+```
+
+## Electronic Poster Presentations
+
+```{r}
+presentations %>%
+  filter(presentation_type == "eposter") %>%
+  detailed_entries(what = title,
+                   with = author_notes,
+                   where = conference,
+                   when = display_label,
+                   why = more_info)
+```
+
+## Invited Industry Talks
+
+```{r}
+presentations %>%
+  filter(presentation_type == "invited_industry") %>%
+  detailed_entries(what = title,
+                   with = author_notes,
+                   where = conference,
+                   when = display_label,
+                   why = more_info)
+```
+
+# Miscellaneous Articles
+
+```{r misc-articles}
+misc_articles %>%
+  detailed_entries(what = title,
+                   with = authors,
+                   where = journal,
+                   when = display_label,
+                   why = more_info)
+```
+
+
+# Software
+
+## R Packages
+
+```{r}
+software %>%
+  detailed_entries(what = title,
+                   with = authors,
+                   when = display_label,
+                   why = url_location)
+```
+
+
+# Teaching Experience
+
+## Courses Taught at Carnegie Mellon 
+
+```{r}
+teaching %>%
+  filter(role == "course_instructor") %>%
+  detailed_entries(what = title,
+                   when = display_label,
+                   with = semester_summary,
+                   why = notes)
+```
+
+## Courses Served as Teaching Assistant at Carnegie Mellon
+
+```{r}
+teaching %>%
+  filter(role == "course_ta") %>%
+  detailed_entries(what = title,
+                   when = display_label,
+                   with = semester_summary,
+                   why = notes)
+```
+
+## Courses Served as Grader at Carnegie Mellon
+
+```{r}
+teaching %>%
+  filter(role == "course_grader") %>%
+  detailed_entries(what = title,
+                   when = display_label,
+                   with = semester_summary,
+                   why = notes)
+```
+
+## Workshops Taught
+
+```{r}
+teaching %>%
+  filter(role == "workshop_instructor") %>%
+  detailed_entries(what = title,
+                   when = display_label,
+                   why = notes)
+```
+
+# Research Experience
+
+## Research Assistant at Carnegie Mellon
+
+```{r}
+research_experience %>%
+  filter(type == "ra") %>%
+  arrange(desc(start_year)) %>%
+  detailed_entries(what = role_title,
+                   when = years,
+                   with = advised_by,
+                   where = project_title)
+```
+
+
+## Other Research Experience at Carnegie Mellon
+
+```{r}
+research_experience %>%
+  filter(type == "other") %>%
+  arrange(desc(start_year)) %>%
+  detailed_entries(what = role_title,
+                   when = years,
+                   with = advised_by,
+                   where = project_title)
+```
+
+
+# Industry Experience
+
+## Full-time
+
+```{r}
+industry_experience %>%
+  filter(type == "full") %>%
+  arrange(desc(start_year)) %>%
+  detailed_entries(what = role,
+                   when = years,
+                   where = display_location)
+```
+
+## Internships
+
+```{r}
+industry_experience %>%
+  filter(type == "intern") %>%
+  arrange(desc(start_year)) %>%
+  detailed_entries(what = role,
+                   when = years,
+                   where = display_location)
+```
+
+
+# Fellowships and Funding
+
+```{r}
+fellowships_grants %>%
+  detailed_entries(what = title,
+                   when = years)
+```
+
+# Honors and Awards
+
+```{r}
+honors_awards %>%
+  detailed_entries(what = title,
+                   when = year,
+                   with = extra_info,
+                   where = from)
+```
+
+# Professional Service
+
+## Organization
+
+```{r}
+professional_service %>%
+  filter(type == "organize") %>%
+  detailed_entries(what = service_title,
+                   where = service_for,
+                   why = service_info,
+                   when = years)
+```
+
+## Journal Reviewer
+
+```{r}
+professional_service %>%
+  filter(type == "journal_review") %>%
+  summarize(journals = paste0(service_for, collapse = ", ")) %>%
+  detailed_entries(what = journals)
+```
+
+## Department Service
+
+```{r}
+professional_service %>%
+  filter(type == "dept_service") %>%
+  detailed_entries(what = service_title,
+                   where = service_for,
+                   when = years)
+```
+
+## University Service
+
+```{r}
+professional_service %>%
+  filter(type == "univ_service") %>%
+  detailed_entries(what = service_title,
+                   where = service_for,
+                   when = years)
+```
+
+# Workshop Participation
+
+```{r}
+workshops_attended %>%
+  detailed_entries(what = workshop_name,
+                   when = year,
+                   where = location)
+```
+
+# Professional Societies
+
+```{r}
+professional_societies %>%
+  detailed_entries(what = society)
+```
+
+# Computing Skills
+
+```{r}
+computing_skills %>%
+  detailed_entries(what = languages, 
+                   when = level)
+```
+
+# Activities
+
+## Team Sports
+
+```{r}
+activities %>%
+  filter(type == "team_sports") %>%
+  detailed_entries(what = activity,
+                   when = years,
+                   why = activity_info)
+```
+
+## Volunteering
+
+```{r}
+activities %>%
+  filter(type == "volunteering") %>%
+  detailed_entries(what = activity,
+                   when = years,
+                   why = activity_info)
+```
+
+## Charity Runs
+
+```{r}
+activities %>%
+  filter(type == "runs") %>%
+  detailed_entries(what = activity,
+                   when = years,
+                   why = activity_info)
+```
+
+

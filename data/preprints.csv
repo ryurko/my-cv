@@ -1,0 +1,5 @@
+paper_id,title,authors,journal,status,pub_year,url,website
+goingdeep19,Going Deep: models for continuous-time within-play valuation of game outcomes in american football with tracking data,"R. Yurko, F. Matano, L. Richardson, N. Granered, T. Pospisil, K. Pelechrinis, S. Ventura",Journal of Quantitative Analysis in Sports,Under review,NA,https://arxiv.org/abs/1906.01760,ArXiv
+nextgenscrapy19,A naive bayes approach for NFL passing evaluation using tracking data extracted from images,"S. Mallepalle, R. Yurko, K. Pelechrinis, S. Ventura",Journal of Quantitative Analysis in Sports,Under review,NA,https://arxiv.org/abs/1906.03339,ArXiv
+defenseclustering19,Unsupervised methods for identifying pass coverage among defensive backs with NFL player tracking data,"R. Dutta, R. Yurko, S. Ventura",Journal of Quantitative Analysis in Sports,Under review,NA,https://arxiv.org/abs/1906.11373,ArXiv
+adapt19,Application of selective inference to multi-omics data yields insights into the etiologies of human diseases,"R. Yurko, M. G'Sell, K. Roeder, B. Devlin",NA,Under review,NA,https://www.biorxiv.org/content/10.1101/806471v1,bioRxiv
