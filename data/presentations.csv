@@ -1,10 +1,15 @@
 paper_id,title,author_notes,conference,presentation_type,year,more_info
-nessis19,Going Deep: models for continuous-time within-play valuation of game outcomes in american football with tracking data,NA,New England Symposium on Statistics in Sports,invited_seminar,2019,NA
-nessis17,nflWAR: a reproducible method for offensive player evaluation in football,NA,New England Symposium on Statistics in Sports,invited_seminar,2017,NA
-pittsports17,nflWAR: a reproducible method for offensive player evaluation in football,NA,Computational Sports Informatics Colloquium,invited_seminar,2017,NA
-cmsac17,nflWAR: a reproducible method for offensive player evaluation in football,NA,Carnegie Mellon Sports Analytics Conference,invited_industry,2017,NA
-ritsac18,nflWAR: a reproducible method for offensive player evaluation in football,NA,RIT Sports Analytics Conference,invited_industry,2018,NA
-user18,Exploring NFL data with nflscrapR,NA,Pittsburgh useR Group,invited_industry,2018,NA
+issi20,Adaptive approaches for augmenting genetic association studies with multi-omics covariates,Presented by Kathryn Roeder,International Seminar on Selective Inference,invited_talk,2020,NA
+ucsas20,Going Deep: models for continuous-time within-play valuation of game outcomes in american football with tracking data,Keynote Speaker,UConn Sports Analytics Symposium,invited_talk,2020,NA
+jsm20_1,Going Deep: models for continuous-time within-play valuation of game outcomes in american football with tracking data,Presented by Lee Richardson,Joint Statistical Meetings,invited_talk,2020,NA
+nessis19_1,Going Deep: models for continuous-time within-play valuation of game outcomes in american football with tracking data,NA,New England Symposium on Statistics in Sports,invited_talk,2019,NA
+nessis17,nflWAR: a reproducible method for offensive player evaluation in football,NA,New England Symposium on Statistics in Sports,invited_talk,2017,NA
+pittsports17,nflWAR: a reproducible method for offensive player evaluation in football,NA,Computational Sports Informatics Colloquium,invited_talk,2017,NA
+cmsac17,nflWAR: a reproducible method for offensive player evaluation in football,NA,Carnegie Mellon Sports Analytics Conference,invited_talk,2017,NA
+ritsac18,nflWAR: a reproducible method for offensive player evaluation in football,NA,RIT Sports Analytics Conference,invited_talk,2018,NA
+user18,Exploring NFL data with nflscrapR,NA,Pittsburgh useR Group,invited_talk,2018,NA
+uscots19,"Many Students, One Dataset: Using ISLE to Teach Reproducibility and the Impact of Data Analysis Decisions on Conclusions","Joint work with R. Nugent, P. Burckhardt, F. Kovacs",USCOTS,invited_talk,2019,NA
+jsm20_2,A selective inference approach for FDR control using multi-omics covariates yields insights into disease risk,NA,Joint Statistical Meetings,contributed,2020,NA
 upstat17,nflscrapR: an R package for easy access to NFL data and a new model for expected points and win probability,NA,UP-STAT,contributed,2017,"Second Place, Best Young Researchers’ Award in Category C: Application"
 glasc17,NFL player evaluation using expected points added with nflscrapR,NA,Great Lakes Analytics in Sports Conference,contributed,2017,NA
 cs17,Variable selection for consistent clustering,NA,Classification Society Annual Meeting,contributed,2017,NA
@@ -14,7 +19,10 @@ cassis18,"Multilevel models to measure player, team, and stadium effects on NFL 
 mom15,Classifying Kepler objects of interest,Joint work with Eric Alpert,Meeting of the Minds,poster,2015,"First Place, Statistics Poster Competition"
 duc15,Improving predictions of ensemble methods using distributions of estimated probabilities,NA,Dietrich Undergraduate Colloquium,poster,2015,NA
 pittasa18,Variable selection for consistent clustering,NA,Pittsburgh ASA Chapter Spring Banquet,poster,2018,NA
-ashg19,Application of post-selection inference to multi-omics data yields insights into the etiologies of human diseases,NA,2019 Annual Meeting of the American Society of Human Genetics,poster,2019,NA
+ashg19,Application of post-selection inference to multi-omics data yields insights into the etiologies of human diseases,NA,Annual Meeting of the American Society of Human Genetics,poster,2019,NA
+nessis19_2,TRAP: a predictive framework for the assessment of performance in trail running,Presented by Natalia L. Oliveira,New England Symposium on Statistics in Sports,poster,2019,Best Student Poster Prize
+cmsac19,TRAP: a predictive framework for the assessment of performance in trail running,Presented by R. Fogliato,Carnegie Mellon Sports Analytics Conference,poster,2019,Best Poster Award
+ashg20,Augmenting gene-level tests based on two-sided summary statistics with multiomics covariates,NA,Annual Meeting of the American Society of Human Genetics,eposter,2020,NA
+sdss20,A selective inference approach for FDR control using multi-omics covariates yields insights into disease risk,NA,Symposium on Data Science & Statistics,eposter,2020,NA
 ecots18_1,Identifying misconceptions of introductory data science using a think-aloud protocol,"Joint work with S. Hyun, P. Burckhardt, P. Elliott, C. Evans, K. Lin, A. Luby, C. P. Makris, J. Orellana, A. Reinhart, J. Wieczorek, G. Weinberg, R. Nugent",eCOTS,eposter,2018,NA
 ecots18_2,Using text analysis to characterize student learning in an introductory statistics & data science course,NA,eCOTS,eposter,2018,NA
-uscots19,"'Many Students, One Dataset': Using ISLE to Teach Reproducibility and the Impact of Data Analysis Decisions on Conclusions","Joint work with R. Nugent, P. Burckhardt, F. Kovacs",USCOTS,invited_seminar,2019,NA

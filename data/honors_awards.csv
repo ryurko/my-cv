@@ -1,6 +1,9 @@
 type,title,year,extra_info,from
 honor,Andrew Carnegie Society Scholar,2015,NA,Carnegie Mellon University
 honor,Phi Kappa Phi Honor Society,2015,NA,NA
-honor,Honors courses,NA,"Mathematical Statistics Honors, Undergraduate Research Course","Department of Statistics & Data Science, Carnegie Mellon University"
+honor,Honors courses,2014,"Mathematical Statistics Honors, Undergraduate Research Course","Department of Statistics & Data Science, Carnegie Mellon University"
 award,"Second Place, Best Young Researchers' Award in Category C: Application",2017,NA,UP-STAT
 award,"First Place, Statistics Poster Competition",2015,NA,Meeting of the Minds
+award,Best Student Poster Prize,2019,NA,New England Symposium on Statistics in Sports
+award,Honorable Mention,2021,NA,NFL Big Data Bowl 2021
+award,Best Poster Award,2019,NA,Carnegie Mellon Sports Analytics Conference

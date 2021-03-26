@@ -29,8 +29,9 @@ education <- education_raw %>%
 
 
 ```{r init_publications, include = FALSE}
-papers_raw <- read_csv(here("data", "publications.csv")) %>%
-  bind_rows(read_csv(here("data", "preprints.csv")))
+papers_raw <- read_csv(here("data", "publications.csv")) #%>%
+# Comment out with 0 preprints
+#  bind_rows(read_csv(here("data", "preprints.csv")))
 papers <- papers_raw %>% 
   # Specify the release text based on if the status == "Published"
   mutate(release = ifelse(status == "Published",
@@ -240,10 +241,11 @@ education %>%
   )
 ```
 
-# Publications and Preprints
+# Publications
 
 ```{r publications}
 #bibliography_entries(here("data", "publications.bib"))
+# add 'and Preprints' above if there are preprints to include
 papers %>%
   detailed_entries(what = title,
                    with = authors,
@@ -254,11 +256,11 @@ papers %>%
 
 # Presentations
 
-## Invited Seminar Presentations
+## Invited Talks
 
 ```{r}
 presentations %>%
-  filter(presentation_type == "invited_seminar") %>%
+  filter(presentation_type == "invited_talk") %>%
   detailed_entries(what = title,
                    with = author_notes,
                    where = conference,
@@ -267,7 +269,7 @@ presentations %>%
 ```
 
 
-## Contributed Conference Oral Presentations
+## Contributed Talks
 
 ```{r}
 presentations %>%
@@ -297,18 +299,6 @@ presentations %>%
 ```{r}
 presentations %>%
   filter(presentation_type == "eposter") %>%
-  detailed_entries(what = title,
-                   with = author_notes,
-                   where = conference,
-                   when = display_label,
-                   why = more_info)
-```
-
-## Invited Industry Talks
-
-```{r}
-presentations %>%
-  filter(presentation_type == "invited_industry") %>%
   detailed_entries(what = title,
                    with = author_notes,
                    where = conference,

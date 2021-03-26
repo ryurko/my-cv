@@ -3,3 +3,4 @@ r_nflscrapr_17,nflscrapR: Compiling the NFL Play-by-Play API for easy use in R,"
 r_nflwar_18,nflWAR: An R package to compute WAR for offensive players using nflscrapR,R. Yurko,2018,https://github.com/ryurko/nflWAR,GitHub
 r_fcscrapr_18,fcscrapR: R package to scrape soccer commentary and statistics from ESPN,R. Yurko,2018,https://github.com/ryurko/fcscrapR,GitHub
 r_adaptMT_19,adaptMT: Modifications including wrapper functions for XGBoost implementation with EM algorithm cross-validation tuning,R. Yurko,2019,https://github.com/ryurko/adaptMT,GitHub
+r_snpcombiner_20,snpcombineR: R package to combine SNP-level test statistics at various region levels,R. Yurko,2020,https://github.com/ryurko/snpcombineR,GitHub
