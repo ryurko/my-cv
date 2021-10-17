@@ -41,8 +41,9 @@ papers <- papers_raw %>%
          release = ifelse(status == "Forthcoming", 
                           paste0(status, " (", pub_year, ")"), release),
          # Now relevel the status so that in goes from in progress, under review
-         # to published:
-         status = fct_relevel(status, "In progress", "Under review", "Published"),
+         # Forthcoming to  Published:
+         status = fct_relevel(status, "In progress", "Under review", 
+                              "Forthcoming", "Published"),
          # Create the line providing the url for the paper:
          url_location = ifelse(!is.na(url),
                                paste0(website, ": ", url),
@@ -57,7 +58,7 @@ papers <- papers_raw %>%
   # not repeated:
   group_by(status_order) %>%
   mutate(status_order_i = 1:n(),
-         display_label = ifelse(status_order_i == 1, release, "")) %>%
+         display_label = ifelse(status_order_i == 1, as.character(release), "")) %>%
   ungroup()
   
 ```
@@ -90,7 +91,7 @@ misc_articles <- misc_articles_raw %>%
   # not repeated:
   group_by(status_order) %>%
   mutate(status_order_i = 1:n(),
-         display_label = ifelse(status_order_i == 1, release, "")) %>%
+         display_label = ifelse(status_order_i == 1, as.character(release), "")) %>%
   ungroup()
 ```
 
@@ -405,6 +406,18 @@ research_experience %>%
 
 
 # Industry Experience
+
+## Part-time
+
+```{r}
+industry_experience %>%
+  filter(type == "part") %>%
+  arrange(desc(start_year)) %>%
+  detailed_entries(what = role,
+                   when = years,
+                   where = display_location)
+```
+
 
 ## Full-time
 
