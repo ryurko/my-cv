@@ -53,7 +53,7 @@ papers <- papers_raw %>%
          status_order = ifelse(!is.na(pub_year), paste(status, pub_year, "-"),
                                status)) %>%
   # Now arrange by the status then year:
-  arrange(status, desc(status_order)) %>%
+  arrange(status, desc(status_order), pub_ranking) %>%
   # Now group by the status_order to generate an ordering so the lefthand labels are
   # not repeated:
   group_by(status_order) %>%
@@ -318,20 +318,6 @@ misc_articles %>%
                    why = more_info)
 ```
 
-
-# Software
-
-## R Packages
-
-```{r}
-software %>%
-  detailed_entries(what = title,
-                   with = authors,
-                   when = display_label,
-                   why = url_location)
-```
-
-
 # Teaching Experience
 
 ## Courses Taught at Carnegie Mellon 
@@ -339,6 +325,17 @@ software %>%
 ```{r}
 teaching %>%
   filter(role == "course_instructor") %>%
+  detailed_entries(what = title,
+                   when = display_label,
+                   with = semester_summary,
+                   why = notes)
+```
+
+## Research Supervision
+
+```{r}
+teaching %>%
+  filter(role == "research_advising") %>%
   detailed_entries(what = title,
                    when = display_label,
                    with = semester_summary,
@@ -377,7 +374,21 @@ teaching %>%
                    why = notes)
 ```
 
-# Research Experience
+
+# Software
+
+## R Packages
+
+```{r}
+software %>%
+  detailed_entries(what = title,
+                   with = authors,
+                   when = display_label,
+                   why = url_location)
+```
+
+
+# Student Research Experience
 
 ## Research Assistant at Carnegie Mellon
 
